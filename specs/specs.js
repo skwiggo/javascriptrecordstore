@@ -2,6 +2,7 @@ var assert = require("assert");
 var _ = require("lodash");
 var RecordStore = require("../record_store.js");
 var Record = require("../record.js");
+var Customer = require("../customer.js");
 
 
 describe("Record Store", function (){
@@ -13,6 +14,7 @@ describe("Record Store", function (){
     var record5;
     var record6;
     var underground;
+    var james;
 
     before(function() {
       record1 = new Record("The Cure", "The Head on The Door", "12inch vinyl", "alternative/indie", 9.00);
@@ -22,6 +24,7 @@ describe("Record Store", function (){
       record5 = new Record("George Duke", "Master of the Game", "cassette", "rnb/disco", 5.00);
       record6 = new Record("Throbbing Gristle", "20 Jazz Funk Greats", "12inch vinyl", "industrial", 12.00);
       underground = new RecordStore("Underground", "Edinburgh", 10000.00);
+      james = new Customer("James", 300);
     })
 
   it("should return record store name", function() {
@@ -64,5 +67,22 @@ describe("Record Store", function (){
     underground.sellRecord("Drive OST");
     assert.equal(10020, underground.balance);
   })
+
+  it("should be able to show inventory value", function() {
+    assert.equal(46, underground.inventoryValue());
+  })
+
+  it("should be able to buy a record from the record store (customer)", function() {
+    james.buyRecord(underground, "The Head on The Door");
+    assert.equal(1, james.collection.length);
+    assert.equal(291, james.balance);
+  })
+
+  it("should be able to buy sell a record from the record store (customer)", function() {
+    james.sellRecord(underground, "The Head on The Door");
+    assert.equal(0, james.collection.length);
+    assert.equal(300, james.balance);
+  })
+
 
 })

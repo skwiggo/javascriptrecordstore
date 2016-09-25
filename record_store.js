@@ -25,12 +25,22 @@ RecordStore.prototype = {
     })
   },
 
-  sellRecord:function(recordName){
+  sellRecord: function(recordName){
     return _.find(this.inventory, function(record){
       if (record.recordName === recordName) {
       return this.balance += record.price;}
-    })
-  }
+    }.bind(this))
+  },
+
+  inventoryValue: function() {
+    var sum = 0
+    for (index of this.inventory) {
+      sum += index.price;
+    }
+    return sum;
+  },
+
+  
 }
 
 module.exports = RecordStore;
