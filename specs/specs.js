@@ -45,7 +45,7 @@ describe("Record Store", function (){
   })
 
   it("should return the inventory", function() {
-    underground.addRecord(record1)
+    underground.addRecord(record1);
     assert.equal(record1, underground.listRecords());
   })
 
@@ -61,8 +61,8 @@ describe("Record Store", function (){
   })
 
   it("should be able to sell a specific record", function() {
-    underground.sellRecord("Drive OST")
-    assert.equal(100020.00, underground.balance());
+    underground.sellRecord("Drive OST");
+    assert.equal(10020, underground.balance);
   })
 
 })

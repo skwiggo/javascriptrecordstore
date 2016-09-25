@@ -19,14 +19,17 @@ RecordStore.prototype = {
     this.inventory.push(record);
   },
 
-  findRecord: function(record) {
-    var search = _.find(this.inventory, ["record", record.recordName]);
-    return search;
+  findRecord:function(recordName){
+    return _.find(this.inventory, function(record){
+      return record.recordName === recordName;
+    })
   },
 
-  sellRecord: function(record) {
-    var search = _.find(this.inventory, ["record", record.recordName]);
-    this.balance += search.price;
+  sellRecord:function(recordName){
+    return _.find(this.inventory, function(record){
+      if (record.recordName === recordName) {
+      return this.balance += record.price;}
+    })
   }
 }
 
