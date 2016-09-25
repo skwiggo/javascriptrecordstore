@@ -17,7 +17,7 @@ Customer.prototype = {
   },
 
   sellRecord: function(store, recordName){
-    return _.find(this.inventory, function(record){
+    return _.find(this.collection, function(record){
       if (record.recordName === recordName) {
       this.balance += record.price;
       return this.collection.pop(record);
