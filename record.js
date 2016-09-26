@@ -6,6 +6,7 @@ var Record = function(artistName, recordName, format, genre, price) {
   this.format = format;
   this.genre = genre;
   this.price = price;
+  
 }
 
 module.exports = Record;

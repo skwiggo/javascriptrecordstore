@@ -9,8 +9,9 @@ var Customer = function(name, balance) {
 Customer.prototype = {
   buyRecord: function(store, recordName){
       return _.find(store.inventory, function(record){
-        if (record.recordName === recordName) {
+        if (record.recordName === recordName && this.balance >= record.price) {
         this.balance -= record.price;
+        store.inventory.pop(record);
         return this.collection.push(record);
         }
       }.bind(this))
@@ -20,6 +21,7 @@ Customer.prototype = {
     return _.find(this.collection, function(record){
       if (record.recordName === recordName) {
       this.balance += record.price;
+      store.inventory.push(record);
       return this.collection.pop(record);
       }
     }.bind(this))

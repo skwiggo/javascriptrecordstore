@@ -27,7 +27,7 @@ RecordStore.prototype = {
 
   sellRecord: function(recordName){
     return _.find(this.inventory, function(record){
-      if (record.recordName === recordName) {
+      if (record.recordName === recordName) {     
       return this.balance += record.price;}
     }.bind(this))
   },
@@ -38,9 +38,7 @@ RecordStore.prototype = {
       sum += index.price;
     }
     return sum;
-  },
-
-  
+  },  
 }
 
 module.exports = RecordStore;
