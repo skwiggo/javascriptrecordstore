@@ -11,7 +11,7 @@ Customer.prototype = {
       return _.find(store.inventory, function(record){
         if (record.recordName === recordName && this.balance >= record.price) {
         this.balance -= record.price;
-        store.inventory.pop(record);
+        store.addRecord(record);
         return this.collection.push(record);
         }
       }.bind(this))
@@ -19,9 +19,9 @@ Customer.prototype = {
 
   sellRecord: function(store, recordName){
     return _.find(this.collection, function(record){
-      if (record.recordName === recordName) {
+      if (record.recordName === recordName && store.balance >= record.price) {
       this.balance += record.price;
-      store.inventory.push(record);
+      store.sellRecord(record);
       return this.collection.pop(record);
       }
     }.bind(this))

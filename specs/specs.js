@@ -66,10 +66,11 @@ describe("Record Store", function (){
   it("should be able to sell a specific record", function() {
     underground.sellRecord("Drive OST");
     assert.equal(10020, underground.balance);
+    assert.equal(3, underground.inventory.length);
   })
 
   it("should be able to show inventory value", function() {
-    assert.equal(46, underground.inventoryValue());
+    assert.equal(26, underground.inventoryValue());
   })
 
   it("should be able to buy a record from the record store (customer)", function() {

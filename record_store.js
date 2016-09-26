@@ -28,6 +28,7 @@ RecordStore.prototype = {
   sellRecord: function(recordName){
     return _.find(this.inventory, function(record){
       if (record.recordName === recordName) {     
+      this.inventory.pop(record);
       return this.balance += record.price;}
     }.bind(this))
   },
